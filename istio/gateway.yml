@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  creationTimestamp: null
+  name: colors
+  namespace: canary
+#  resourceVersion: "562037"
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - colors.demo4591.codefresh.io
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+---
+
