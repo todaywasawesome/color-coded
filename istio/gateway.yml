@@ -15,5 +15,10 @@ spec:
       name: http
       number: 80
       protocol: HTTP
+    - canary.demo4591.codefresh.io
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
 ---
 
