@@ -48,6 +48,7 @@ incrementservice(){
     echo "      weight:" $m >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
     cat $WORKING_VOLUME/canary_$m.yml
+    echo "Applying $WORKING_VOLUME/canary_$m.yml"
     istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
     echo "Traffic mix updated to $m% for canary."
 }
