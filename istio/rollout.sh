@@ -16,15 +16,15 @@ healthcheck(){
 cancel(){
 	echo "Cancelling rollout"
 	m="cancel"
-	cp istio/canary.yml $WORKING_VOLUMEcanary_$m.yml
-    echo "    - destination:" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "        port:" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "          number:" 80 >> $WORKING_VOLUMEcanary_$m.yml
-    echo "      weight:" "100" >> $WORKING_VOLUMEcanary_$m.yml
+	cp istio/canary.yml $WORKING_VOLUME/canary_$m.yml
+    echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
+    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
+    echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
+    echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
+    echo "      weight:" "100" >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
-    cat $WORKING_VOLUMEcanary_$m.yml
-    istioctl replace -f $WORKING_VOLUMEcanary_$m.yml -n $NAMESPACE
+    cat $WORKING_VOLUME/canary_$m.yml
+    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
     echo "Canary removed from network."
     exit 1
 }
@@ -32,24 +32,25 @@ cancel(){
 incrementservice(){
 	#Pass $1 = canary traffic increment
 	m=$1
-	cp istio/canary.yml $WORKING_VOLUMEcanary_$m.yml
+	echo "Creating $WORKING_VOLUME/canary_$m.yml ..."
+	cp istio/canary.yml $WORKING_VOLUME/canary_$m.yml
 	if [ "$m" -lt "100" ]; then
-		echo "    - destination:" >> $WORKING_VOLUMEcanary_$m.yml
-	    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUMEcanary_$m.yml
-	    echo "        port:" >> $WORKING_VOLUMEcanary_$m.yml
-	    echo "          number:" 80 >> $WORKING_VOLUMEcanary_$m.yml
-	    echo "      weight:" $((100-$m)) >> $WORKING_VOLUMEcanary_$m.yml
+		echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
+	    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
+	    echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
+	    echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
+	    echo "      weight:" $((100-$m)) >> $WORKING_VOLUME/canary_$m.yml
 	fi
     echo "Add Canary"
-    echo "    - destination:" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "        host:" "$CANARY_HOST_NAME" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "        port:" >> $WORKING_VOLUMEcanary_$m.yml
-    echo "          number:" 80 >> $WORKING_VOLUMEcanary_$m.yml
-    echo "      weight:" $m >> $WORKING_VOLUMEcanary_$m.yml
+    echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
+    echo "        host:" "$CANARY_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
+    echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
+    echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
+    echo "      weight:" $m >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
-    cat $WORKING_VOLUMEcanary_$m.yml
-    echo "Applying $WORKING_VOLUMEcanary_$m.yml"
-    istioctl replace -f $WORKING_VOLUMEcanary_$m.yml -n $NAMESPACE
+    cat $WORKING_VOLUME/canary_$m.yml
+    echo "Applying $WORKING_VOLUME/canary_$m.yml"
+    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
     echo "Traffic mix updated to $m% for canary."
 }
 
