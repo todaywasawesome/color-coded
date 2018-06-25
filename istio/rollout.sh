@@ -50,6 +50,7 @@ incrementservice(){
     echo "Done building config..."
     cat $WORKING_VOLUME/canary_$m.yml
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
+    echo "Running istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE"
     istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
     echo "Traffic mix updated to $m% for canary."
 }
