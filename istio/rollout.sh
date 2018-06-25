@@ -91,5 +91,6 @@ else
 	exit 1;
 fi
 
+echo $BASH_VERSION
 p=0
 mainloop
