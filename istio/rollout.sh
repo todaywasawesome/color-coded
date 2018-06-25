@@ -74,7 +74,7 @@ mainloop(){
 
 if [ "$1" != "" ] && [ "$2" != "" ] && [ "$3" != "" ] && [ "$4" != "" ] && [ "$5" != "" ]; then
 	echo "Volume Set"
-	WORKING_VOLUME=$1
+	WORKING_VOLUME=${1%/}
 	CURRENT_HOST_NAME=$2
 	CANARY_HOST_NAME=$3
 	TRAFFIC_INCREMENT=$4
