@@ -61,6 +61,7 @@ incrementservice(){
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
     echo "Running istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE"
     istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE -c $KUBE --log_output_level=debug
+    sleep 10s
     echo "Traffic mix updated to $m% for canary."
 }
 
@@ -77,7 +78,7 @@ mainloop(){
 			echo "Done"
 			exit 0
 		fi
-		sleep 90s
+		sleep 50s
 		healthcheck
 	done
 }

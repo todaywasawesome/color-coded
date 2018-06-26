@@ -9,7 +9,7 @@ import (
 func main() {
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
-		os.Setenv("COLOR", "green")
+		os.Setenv("COLOR", "#44B3C2")
 	} 
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
