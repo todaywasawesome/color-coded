@@ -26,6 +26,7 @@ cancel(){
 	echo "Cancelling rollout"
 	m="cancel"
 	cp istio/canary.yml $WORKING_VOLUME/canary_$m.yml
+	echo "  - route:" >> $WORKING_VOLUME/canary_$m.yml 
     echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
     echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
     echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
@@ -53,7 +54,9 @@ incrementservice(){
 		echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
 		echo "          number: 80" >> $WORKING_VOLUME/canary_$m.yml
 	fi
+
 	echo "  - route:" >> $WORKING_VOLUME/canary_$m.yml #Always prefix the route
+	
 	if [ "$m" -lt "100" ]; then #Add old version
 		echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
 	    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
