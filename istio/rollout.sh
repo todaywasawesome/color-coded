@@ -5,6 +5,15 @@
 healthcheck(){
 	echo "Starting Heathcheck"
 	h=true
+	#Start custom healthcheck
+	output=$(kubectl get pods -l app="$CANARY_HOST_NAME" -n canary --no-headers)
+	s=($(echo "$output" | awk '{s+=$4}END{print s}'))
+	c=($(echo "$output" | wc -l))
+
+	if [ "$s" -gt "2" ]; then
+		h=false
+	fi
+	#End custom healthcheck
 	if [ ! $h == true ]; then
 		cancel
 		echo "Exit failed"
@@ -51,7 +60,7 @@ incrementservice(){
     cat $WORKING_VOLUME/canary_$m.yml
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
     echo "Running istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE"
-    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
+    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE --log_output_level=debug
     echo "Traffic mix updated to $m% for canary."
 }
 
