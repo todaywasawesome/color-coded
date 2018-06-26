@@ -75,8 +75,8 @@ incrementservice(){
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
     echo "Running istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE"
     istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE -c $KUBE --log_output_level=debug
-    COUNTER=20
-    until [ $COUNTER -ge 10 ]; do echo -n "."; sleep 1; let COUNTER+=1; done
+    COUNTER=0
+    until [ $COUNTER -ge 30 ]; do echo -n "."; sleep 1; let COUNTER+=1; done
     echo "Traffic mix updated to $m% for canary."
 }
 
