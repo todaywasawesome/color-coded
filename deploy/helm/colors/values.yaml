@@ -1,0 +1,27 @@
+# Default values for mongo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+deployment:
+  - track: release
+    image:
+      repository: r.cfcr.io/todaywasawesome/todaywasawesome/colorcoded
+      tag: 'master'
+      version: 'color'
+      pullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
+  # - track: canary
+  #   image:
+  #     repository: r.cfcr.io/todaywasawesome/todaywasawesome/demochat
+  #     tag: 'master-5937127'
+  #     version: 'master-5937127'
+  #     pullSecret: codefresh-generated-r.cfcr.io-cfcr-helmchat
+
+replicaCount: 3
+imagePullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
+image:
+  pullPolicy: Always
+
+service:
+  name: color
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080

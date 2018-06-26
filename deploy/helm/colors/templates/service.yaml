@@ -1,0 +1,23 @@
+{{ $local := . }}
+{{- range $index, $track := .Values.deployment }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: '{{$local.Release.Name}}-{{$track.image.version}}'
+  labels:
+    chart: "{{ $local.Chart.Name }}-{{ $local.Chart.Version | replace "+" "_" }}"
+    app: {{$local.Release.Name}}
+    release: {{$local.Release.Name}}
+    version: '{{$track.image.version}}'
+    heritage: Tiller
+spec:
+  type: {{ $local.Values.service.type }}
+  ports:
+   - name: {{ $local.Values.service.name }}
+     port: {{ $local.Values.service.externalPort }}
+     protocol: TCP
+     targetPort: {{ $local.Values.service.internalPort }}
+  selector:
+    app: '{{$local.Release.Name}}-{{$track.image.version}}'
+---
+{{ end }}

@@ -1,0 +1,30 @@
+{{ $local := . }}
+{{- range $index, $track := .Values.deployment }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{$local.Release.Name}}-{{$track.image.version}}
+  labels:
+    chart: "{{ $local.Chart.Name }}-{{ $local.Chart.Version | replace "+" "_" }}"
+    app: {{$local.Release.Name}}-{{$track.image.version}}
+spec:
+  replicas: {{ $local.Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{$local.Release.Name}}-{{$track.image.version}}
+        release: {{$local.Release.Name}}
+        heritage: Tiller
+    spec:
+      {{- if $track.image.pullSecret }}
+      imagePullSecrets:
+      - name: "{{$track.image.pullSecret}}"
+      {{- end }}
+      containers:
+      - name: {{$local.Release.Name}}-{{$track.image.version}}
+        image: "{{ $track.image.repository }}:{{ $track.image.tag }}"
+        imagePullPolicy: {{ $local.Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ $local.Values.service.internalPort }}
+---
+{{ end }}
