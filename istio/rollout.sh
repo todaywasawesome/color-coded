@@ -44,6 +44,15 @@ incrementservice(){
 	echo "Creating $WORKING_VOLUME/canary_$m.yml ..."
 	cp istio/canary.yml $WORKING_VOLUME/canary_$m.yml
 	if [ "$m" -lt "100" ]; then
+		echo "  - match:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    - uri:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "        prefix: \"/die\"" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    route:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "        host:" "$CANARY_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
+		echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "          number: 80" >> $WORKING_VOLUME/canary_$m.yml
+		echo "  - route:"
 		echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
 	    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
 	    echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
