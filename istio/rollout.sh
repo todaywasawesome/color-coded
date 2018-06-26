@@ -33,7 +33,7 @@ cancel(){
     echo "      weight:" "100" >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
     cat $WORKING_VOLUME/canary_$m.yml
-    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE
+    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE -c $KUBE 
     echo "Canary removed from network."
     exit 1
 }
@@ -60,7 +60,7 @@ incrementservice(){
     cat $WORKING_VOLUME/canary_$m.yml
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
     echo "Running istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE"
-    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE --log_output_level=debug
+    istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE -c $KUBE --log_output_level=debug
     echo "Traffic mix updated to $m% for canary."
 }
 
@@ -88,7 +88,8 @@ if [ "$1" != "" ] && [ "$2" != "" ] && [ "$3" != "" ] && [ "$4" != "" ] && [ "$5
 	CURRENT_HOST_NAME=$2
 	CANARY_HOST_NAME=$3
 	TRAFFIC_INCREMENT=$4
-	NAMESPACE=$5
+	KUBE=$5
+	NAMESPACE=$6
 else
 	#echo instructions
 	echo "USAGE\n rollout.sh [WORKING_VOLUME] [CURRENT_HOST_NAME] [CANARY_HOST_NAME] [TRAFFIC_INCREMENT]"
