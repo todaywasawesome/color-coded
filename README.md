@@ -12,8 +12,7 @@ Some effort will be requried to streamline the setup for testing but it's possib
 
 1. Create a free Codefresh account
 2. Fork and add this repo to Codefresh and start with a Codefresh YAML '.codefresh/helm-canary.yml' 
-
-<A href="https://gph.is/2N4rxOz"><img src="https://media.giphy.com/media/Mn6bU0nHk8YW8ENdEB/giphy.gif" width="400"></a>
+<a href="https://gph.is/2N4rxOz"><img src="https://media.giphy.com/media/Mn6bU0nHk8YW8ENdEB/giphy.gif" width="400"></a>
 3. Set the environmental variables
 4. <a href="https://g.codefresh.io/account-conf/integration/kubernetes">Add a Kubernetes cluster</a> to your Codefresh account. 
 5. Install <a href="https://istio.io/docs/setup/kubernetes/quick-start/">Istio</a> and <a href="https://github.com/kubernetes/helm">Helm</a>
