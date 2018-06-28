@@ -8,7 +8,7 @@ A simple go app that displays a color and dies when you navigate to /die. The wh
 You can watch a <a href="https://codefresh.io/canary_helm_lp/">full demo here</a>.
 
 ## Installation and usage
-Some effort will be requried to streamline the setup for testing but it's possible now. 
+Some effort will be requried to streamline the setup for testing but it's possible now. These instructions may be incomplete.
 
 1. Create a free Codefresh account
 2. Fork and add this repo to Codefresh and start with a Codefresh YAML '.codefresh/helm-canary.yml' 
