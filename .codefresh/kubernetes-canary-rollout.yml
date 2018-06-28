@@ -23,7 +23,7 @@ steps:
     service: yellow
   StartCanary:
     title: Canary Rollout
-    image: r.cfcr.io/todaywasawesome/todaywasawesome/k8sclitoolset:master
+    image: containers101/k8sclitoolset
     commands:
       - kubectl config use-context ${{KUBE_CONTEXT}}
       - bash -e istio/rollout.sh ${{CF_VOLUME_PATH}}/ blue yellow 35 ${{CF_KUBECONFIG_PATH}} canary
