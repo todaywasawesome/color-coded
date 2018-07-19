@@ -1,0 +1,3 @@
+deploy/* linguist-vendored
+istio/* linguist-vendored
+.codefresh/* linguist-vendored
