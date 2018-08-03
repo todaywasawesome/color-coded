@@ -5,7 +5,7 @@
 ## What's in the app?
 A simple go app that displays a color and dies when you navigate to /die. The whole thing is packaged as a Helm chart and includes a Codefresh pipeline, and Istio configuration. 
 
-You can watch a <a href="https://codefresh.io/canary_helm_lp/">full demo here</a>.
+You can watch a <a href="https://codefresh.io/canary_helm_lp/">full demo here</a>. 
 
 ## Installation and usage
 Some effort will be requried to streamline the setup for testing but it's possible now. These instructions may be incomplete.
