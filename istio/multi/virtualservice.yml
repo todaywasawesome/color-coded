@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  creationTimestamp: null
+  name: colors
+  namespace: canary
+#  resourceVersion: "973245"
+spec:
+  gateways:
+  - colors
+  hosts:
+  - colors.demo4591.codefresh.io
+  http:
+  - route:
+    - destination:
+        host: yellow
+        port:
+          number: 80
+      weight: 20
+    - destination:
+        host: blue
+        port:
+          number: 80
+      weight: 80
+---
+

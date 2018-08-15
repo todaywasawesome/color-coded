@@ -6,12 +6,10 @@ metadata:
     io.codefresh.auto-generated: ae077ae2-1448-4af0-bb9e-ac73464d3c5a
     io.codefresh.generated-at: "1529694211476"
   name: yellow
-  namespace: canary
   resourceVersion: "1299325"
   selfLink: /api/v1/namespaces/canary/services/yellow
   uid: f46c457d-764e-11e8-847a-42010a800037
 spec:
-  clusterIP: 10.43.248.158
   ports:
   - name: http1
     port: 80

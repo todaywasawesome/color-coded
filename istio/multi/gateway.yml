@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  creationTimestamp: null
+  name: colors
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - colors.multidemo.codefresh.io
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  creationTimestamp: null
+  name: colors
+spec:
+  gateways:
+  - colors
+  hosts:
+  - colors.multidemo.codefresh.io
+  http:
+  - route:
+    - destination:
+        host: yellow-master-9d8ba98
+        port:
+          number: 80
+      weight: 100
+    # - destination:
+    #     host: blue
+    #     port:
+    #       number: 80
+    #   weight: 80
+---
+
+

@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: colors
+spec:
+  hosts:
+  - "colors.multidemo.codefresh.io"
+  gateways:
+  - colors
+  http:

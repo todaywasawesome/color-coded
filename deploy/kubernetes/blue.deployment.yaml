@@ -18,7 +18,6 @@ metadata:
     io.codefresh.scm.branch: master
     io.codefresh.scm.revision: 6aec0957538ad193718aa652e0bbd1f6e6300f9e
   name: blue
-  namespace: canary
   resourceVersion: "2013674"
   selfLink: /apis/extensions/v1beta1/namespaces/canary/deployments/blue
   uid: db276b00-764e-11e8-847a-42010a800037
@@ -62,7 +61,7 @@ spec:
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
       imagePullSecrets:
-      - name: codefresh-generated-r.cfcr.io-cfcr-canary
+      - name: codefresh-generated-r.cfcr.io-cfcr-color-coded
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
