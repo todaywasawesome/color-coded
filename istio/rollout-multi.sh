@@ -32,6 +32,9 @@ cancel(){
     echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
     echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
     echo "      weight:" "100" >> $WORKING_VOLUME/canary_$m.yml
+	echo "    timeout: 3s" >> $WORKING_VOLUME/canary_$m.yml
+	echo "    retries:" >> $WORKING_VOLUME/canary_$m.yml
+	echo "      attempts: 1" >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
     cat $WORKING_VOLUME/canary_$m.yml
     istioctl replace -f $WORKING_VOLUME/canary_$m.yml -n $NAMESPACE -c $KUBE 
@@ -53,6 +56,9 @@ incrementservice(){
 		echo "        host:" "$CANARY_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
 		echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
 		echo "          number: 80" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    timeout: 3s" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    retries:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "      attempts: 1" >> $WORKING_VOLUME/canary_$m.yml
 	fi
 
 	echo "  - route:" >> $WORKING_VOLUME/canary_$m.yml #Always prefix the route
@@ -62,7 +68,10 @@ incrementservice(){
 	    echo "        host:" "$CURRENT_HOST_NAME" >> $WORKING_VOLUME/canary_$m.yml
 	    echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
 	    echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
-	    echo "      weight:" $((100-$m)) >> $WORKING_VOLUME/canary_$m.yml
+	    echo "      weight:" $((100-$m)) >> $WORKING_VOLUME/canary_$m.
+		echo "    timeout: 3s" >> $WORKING_VOLUME/canary_$m.yml
+		echo "    retries:" >> $WORKING_VOLUME/canary_$m.yml
+		echo "      attempts: 1" >> $WORKING_VOLUME/canary_$m.yml
 	fi
     echo "Add Canary" #Add new version
     echo "    - destination:" >> $WORKING_VOLUME/canary_$m.yml
@@ -70,6 +79,9 @@ incrementservice(){
     echo "        port:" >> $WORKING_VOLUME/canary_$m.yml
     echo "          number:" 80 >> $WORKING_VOLUME/canary_$m.yml
     echo "      weight:" $m >> $WORKING_VOLUME/canary_$m.yml
+	echo "    timeout: 3s" >> $WORKING_VOLUME/canary_$m.yml
+	echo "    retries:" >> $WORKING_VOLUME/canary_$m.yml
+	echo "      attempts: 1" >> $WORKING_VOLUME/canary_$m.yml
     echo "Done building config..."
     cat $WORKING_VOLUME/canary_$m.yml
     echo "Applying $WORKING_VOLUME/canary_$m.yml"
