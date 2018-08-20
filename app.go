@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 )
- 
+
 func main() {
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
