@@ -15,7 +15,7 @@ deployment:
   #     version: 'master-5937127'
   #     pullSecret: codefresh-generated-r.cfcr.io-cfcr-helmchat
 
-replicaCount: 3
+replicaCount: 1
 imagePullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
 image:
   pullPolicy: Always
