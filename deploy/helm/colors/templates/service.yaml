@@ -9,7 +9,7 @@ metadata:
     app: {{$local.Release.Name}}
     release: {{$local.Release.Name}}
     version: '{{$track.image.version}}'
-    status: {{$local.Values.deployment.status}}
+    status: {{$track.deployment.image.status}}
     heritage: Tiller
 spec:
   type: {{ $local.Values.service.type }}
