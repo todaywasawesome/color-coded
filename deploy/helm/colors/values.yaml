@@ -8,12 +8,14 @@ deployment:
       tag: 'master'
       version: 'color'
       pullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
+      status: canary
   # - track: canary
   #   image:
   #     repository: r.cfcr.io/todaywasawesome/todaywasawesome/demochat
   #     tag: 'master-5937127'
   #     version: 'master-5937127'
   #     pullSecret: codefresh-generated-r.cfcr.io-cfcr-helmchat
+  #     status: prod
 
 replicaCount: 1
 imagePullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
