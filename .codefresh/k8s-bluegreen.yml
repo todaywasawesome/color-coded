@@ -8,7 +8,7 @@ steps:
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
     dockerfile: Dockerfile
   blueGreenDeploy:
-    title: "Deploying new version ${{CF_SHORT_REVISION}}"
+    title: "Blue/Green Rollout"
     image: codefresh/k8s-blue-green:master
     environment:
       - SERVICE_NAME=color-app
