@@ -1,5 +1,6 @@
 version: '1.0'
 stages:
+- Setup
 - Deploy
 steps:
   BuildingDockerImage:
@@ -9,6 +10,32 @@ steps:
     working_directory: ./
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
     dockerfile: Dockerfile
+  checkSetup:
+    title: "Verify Existing Service"
+    image: codefresh/cli
+    stage: Setup
+    commands:
+      - #check if service exists
+  createPullSecret:
+    title: "Create Pull Secret"
+    image: codefresh/cli
+    stage: Setup
+    commands:
+      - codefresh generate image-pull-secret --cluster canary@FirstKubernetes --registry cfcr --namespace bluegreen
+    when:
+      condition:
+        all:
+          setup: '"${{SETUP}}" == true'
+  initalDeploy:
+    title: Deploy color-app
+    image: codefresh/cfstep_helm
+    stage: Setup
+    commands:
+      -     
+    when:
+      condition:
+        all:
+          setup: '"${{SETUP}}" == true'
   blueGreenDeploy:
     title: "Blue/Green Rollout"
     image: codefresh/k8s-blue-green:master
@@ -17,6 +44,6 @@ steps:
       - SERVICE_NAME=color-app
       - DEPLOYMENT_NAME=color-app
       - NEW_VERSION=${{CF_SHORT_REVISION}}
-      - HEALTH_SECONDS=30
+      - HEALTH_SECONDS=45
       - NAMESPACE=bluegreen
       - KUBE_CONTEXT=canary@FirstKubernetes
