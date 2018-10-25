@@ -15,7 +15,7 @@ steps:
     image: codefresh/cli
     stage: Setup
     commands:
-      - #check if service exists
+      - codefresh help #check if service exists
   createPullSecret:
     title: "Create Pull Secret"
     image: codefresh/cli
