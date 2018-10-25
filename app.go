@@ -8,7 +8,7 @@ import (
 )
  
 func main() {
-	// time.Sleep(15 * time.Second)
+	time.Sleep(1 * time.Second)
 	// die();
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
