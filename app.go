@@ -8,8 +8,8 @@ import (
 )
  
 func main() {
-	time.Sleep(15 * time.Second)
-	die();
+	// time.Sleep(15 * time.Second)
+	// die();
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
 		os.Setenv("COLOR", "#44B3C2") //Blue 44B3C2 and Yellow F1A94E. 
