@@ -7,6 +7,7 @@ import (
 )
  
 func main() {
+	die();
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
 		os.Setenv("COLOR", "#44B3C2") //Blue 44B3C2 and Yellow F1A94E. 
