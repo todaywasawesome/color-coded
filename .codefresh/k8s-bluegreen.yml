@@ -31,7 +31,7 @@ steps:
     image: codefresh/cfstep_helm
     stage: Setup
     commands:
-      -     
+      - codefresh help
     when:
       condition:
         all:
