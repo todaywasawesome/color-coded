@@ -4,8 +4,8 @@ metadata:
   annotations:
   labels:
     app: color-app
-    version: 00baseline00
-  name: color-app
+    version: ${{VERSION}}
+  name: color-app-${{VERSION}}
 spec:
   replicas: 2
   selector:
@@ -23,7 +23,7 @@ spec:
         app: color-app
     spec:
       containers:
-      - image: docker.io/containers101/color-coded:master
+      - image: ${{IMAGE}} #docker.io/containers101/color-coded:master
         imagePullPolicy: Always
         name: color-app
         ports:

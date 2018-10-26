@@ -25,7 +25,7 @@ steps:
     when:
       condition:
         all:
-          setup: '"${{SETUP}}" == true'
+          setup: '"${{SETUP}}" == "true"'
   initalDeploy:
     title: Deploy color-app
     image: codefresh/cfstep_helm
@@ -35,7 +35,7 @@ steps:
     when:
       condition:
         all:
-          setup: '"${{SETUP}}" == true'
+          setup: '"${{SETUP}}" == "true"'
   blueGreenDeploy:
     title: "Blue/Green Rollout"
     image: codefresh/k8s-blue-green:master
