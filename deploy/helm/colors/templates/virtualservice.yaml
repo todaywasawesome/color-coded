@@ -5,7 +5,7 @@ metadata:
   name: {{.Release.Name}}
 spec:
   gateways:
-  - colors
+  - {{.Release.Name}}
   hosts:
   - {{.Values.istio.host}}
   http:
