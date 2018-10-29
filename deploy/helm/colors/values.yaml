@@ -9,6 +9,7 @@ deployment:
       version: 'color'
       pullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
       status: canary
+      weight: 100
   # - track: canary
   #   image:
   #     repository: r.cfcr.io/todaywasawesome/todaywasawesome/demochat
@@ -27,3 +28,6 @@ service:
   type: ClusterIP
   externalPort: 80
   internalPort: 8080
+
+istio:
+  host: istio.todaywasawesome.com
