@@ -10,7 +10,7 @@ spec:
   - hosts:
     - colors.multidemo.codefresh.io
     port:
-      name: http
+      name: color
       number: 80
       protocol: HTTP
 ---
