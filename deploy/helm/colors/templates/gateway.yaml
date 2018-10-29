@@ -10,6 +10,6 @@ spec:
   - hosts:
     - {{.Values.istio.host}}
     port:
-      name: http
+      name: httpcolor
       number: 80
       protocol: HTTP
