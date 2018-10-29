@@ -12,7 +12,7 @@ func main() {
 	// die();
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
-		os.Setenv("COLOR", "#44B3C2") //Blue 44B3C2 and Yellow F1A94E. 
+		os.Setenv("COLOR", "#F1A94E") //Blue 44B3C2 and Yellow F1A94E. 
 	} 
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
