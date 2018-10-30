@@ -29,4 +29,4 @@ A lot of work could be done to streamline this setup flow. Contributors welcome!
 ## More about Codefresh
 Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kubernetes CI/CD</a>
 
-[![Codefresh Helm Release Status]( https://g.codefresh.io/api/badges/release?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NTgxYjcxMzk4MDM4OWEwMTAwZDFlNzkw.u79dSG8wLg7iLl47YDrhp31p_1ZnJv6HwJ198otYd7k&selector=canary@FirstKubernetes&name=color-coded&tillerNamespace=kube-system)]( https://g.codefresh.io/helm/releases/canary@FirstKubernetes/kube-system/color-coded/services)
+[![Codefresh Helm Release Status]( https://g.codefresh.io/api/badges/release?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NTgxYjcxMzk4MDM4OWEwMTAwZDFlNzkw.u79dSG8wLg7iLl47YDrhp31p_1ZnJv6HwJ198otYd7k&selector=cluster-1@FirstKubernetes&name=color-ops&tillerNamespace=kube-system)]( https://g.codefresh.io/helm/releases/cluster-1@FirstKubernetes/kube-system/color-ops/services)
