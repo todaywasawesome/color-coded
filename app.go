@@ -24,7 +24,7 @@ func main() {
 	})
 
 	http.HandleFunc("/die", func(w http.ResponseWriter, r *http.Request) {
-		die();
+		// die();
 	})
 
 	http.ListenAndServe(":8080", nil)
