@@ -25,6 +25,7 @@ func main() {
 
 	http.HandleFunc("/die", func(w http.ResponseWriter, r *http.Request) {
 		// die();
+		fmt.Fprintf(w, "<html onclick=\"window.location.href = '/die'\" style='background:" + os.Getenv("COLOR") + "'> Requested: %s\n </html>", r.URL.Path)
 	})
 
 	http.ListenAndServe(":8080", nil)
