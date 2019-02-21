@@ -1,4 +1,6 @@
 version: '1.0'
+stages:
+ - Deploy
 steps:
   BuildingDockerImage:
     title: Building Docker Image
@@ -10,6 +12,7 @@ steps:
   IstioInfo:
     title: Gather istio information
     image: containers101/k8sclitoolset
+    stage: Deploy
     commands:
     - kubectl config use-context ${{KUBE_CONTEXT}}
     - istioctl get virtualservices
@@ -20,6 +23,7 @@ steps:
   DeployHelm:
     title: Prod with Canary Helm Release
     image: containers101/k8sclitoolset
+    stage: Deploy
     commands:
     - echo "Prod is ${{prodVersion}} and Canary is ${{canaryVersion}}"
 #    - if [ "${{prodVersion}}" = "${{canaryVersion}}" ]; then echo "Prod version is the same as canary, nothing to do. Exiting"; exit 1; fi
@@ -27,12 +31,14 @@ steps:
   StartCanary:
     title: Canary Rollout
     image: containers101/k8sclitoolset
+    stage: Deploy
     commands:
       - kubectl config use-context ${{KUBE_CONTEXT}}
       - bash -e istio/rollout.sh ${{CF_VOLUME_PATH}}/ ${{prodVersion}} ${{canaryVersion}} 35 ${{CF_KUBECONFIG_PATH}} canary
   ReleaseProd:
     title: Do Final Helm Release
     image: containers101/k8sclitoolset
+    stage: Deploy
     commands:
     - kubectl config use-context ${{KUBE_CONTEXT}}
     - echo "New Prod is ${{canaryVersion}}, doing final Helm release"
