@@ -34,7 +34,7 @@ steps:
     stage: Deploy
     commands:
       - kubectl config use-context ${{KUBE_CONTEXT}}
-      - bash -e istio/rollout.sh ${{CF_VOLUME_PATH}}/ ${{prodVersion}} ${{canaryVersion}} 35 ${{CF_KUBECONFIG_PATH}} canary
+      - bash -e istio/rollout.sh ${{CF_VOLUME_PATH}}/ ${{prodVersion}} ${{canaryVersion}} 35 ${{CF_KUBECONFIG_PATH}} ${{NAMESPACE}}
   ReleaseProd:
     title: Do Final Helm Release
     image: containers101/k8sclitoolset

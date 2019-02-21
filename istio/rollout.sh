@@ -6,7 +6,7 @@ healthcheck(){
 	echo "Starting Heathcheck"
 	h=true
 	#Start custom healthcheck
-	output=$(kubectl get pods -l app="$CANARY_HOST_NAME" -n canary --no-headers)
+	output=$(kubectl get pods -l app="$CANARY_HOST_NAME" -n $NAMESPACE --no-headers)
 	s=($(echo "$output" | awk '{s+=$4}END{print s}'))
 	c=($(echo "$output" | wc -l))
 
