@@ -7,7 +7,7 @@ deployment:
       repository: r.cfcr.io/todaywasawesome/todaywasawesome/colorcoded
       tag: 'master'
       version: 'color'
-      pullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
+      pullSecret: codefresh-generated-r.cfcr.io-cfcr-default
   # - track: canary
   #   image:
   #     repository: r.cfcr.io/todaywasawesome/todaywasawesome/demochat
@@ -16,7 +16,7 @@ deployment:
   #     pullSecret: codefresh-generated-r.cfcr.io-cfcr-helmchat
 
 replicaCount: 3
-imagePullSecret: codefresh-generated-r.cfcr.io-cfcr-canary
+imagePullSecret: codefresh-generated-r.cfcr.io-cfcr-default
 image:
   pullPolicy: Always
 
