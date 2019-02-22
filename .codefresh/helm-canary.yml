@@ -12,7 +12,6 @@ steps:
   IstioInfo:
     title: Gather istio information
     image: containers101/k8sclitoolset
-    stage: Deploy
     commands:
     - kubectl config use-context ${{KUBE_CONTEXT}}
     - istioctl get virtualservices
