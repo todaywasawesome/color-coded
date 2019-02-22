@@ -3,22 +3,17 @@ kind: Gateway
 metadata:
   creationTimestamp: null
   name: colors
-  namespace: canary
+  namespace: default
 #  resourceVersion: "562037"
 spec:
   selector:
     istio: ingressgateway
   servers:
-  - hosts:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts: 
     - colors.demo4591.codefresh.io
-    port:
-      name: http
-      number: 80
-      protocol: HTTP
-    - canary.demo4591.codefresh.io
-    port:
-      name: http
-      number: 80
-      protocol: HTTP
 ---
 
