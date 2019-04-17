@@ -3,7 +3,7 @@ kind: Gateway
 metadata:
   creationTimestamp: null
   name: colors
-  namespace: default
+  namespace: color-coded
 #  resourceVersion: "562037"
 spec:
   selector:

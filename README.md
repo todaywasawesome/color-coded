@@ -19,7 +19,7 @@ Some effort will be requried to streamline the setup for testing but it's possib
 6. Update DNS with your <a href="https://istio.io/docs/tasks/traffic-management/ingress/#determining-the-ingress-ip-and-ports-for-a-load-balancer-ingress-gateway">Istio gateway IP address</a>.
 7. Update and deploy the istio gateway configuration under istio/canary
 8. Update the base canary configuration under istio/canary.yml with your app info.
-9. Install the Helm package once manually (pull this repo, run a helm install)
+9. Install the Helm package once manually (pull this repo, run a helm install) ```helm install --name colors ./deploy/helm/colors/ --namespace=color-coded --set deployment[0].image.pullSecret="codefresh-generated-r.cfcr.io-cfcr-color-coded"```
 10. Review the Codefresh yml and update any remaining variables (like Kubernetes context)
 11. Deploy!
 

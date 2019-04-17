@@ -3,7 +3,7 @@ kind: VirtualService
 metadata:
   creationTimestamp: null
   name: colors
-  namespace: default
+  namespace: color-coded
 #  resourceVersion: "973245"
 spec:
   gateways:
@@ -13,9 +13,14 @@ spec:
   http:
   - route:
     - destination:
-        host: colors-master-5cc491a
+        host: colors-colors
         port:
           number: 80
-      weight: 100
+      weight: 80
+    # - destination:
+    #     host: colors-master-24f0bdf
+    #     port:
+    #       number: 80
+    #   weight: 20
 ---
 
