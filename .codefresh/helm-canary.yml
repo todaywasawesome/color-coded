@@ -9,7 +9,7 @@ steps:
     working_directory: ./
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
     dockerfile: Dockerfile
-AquaSecurityScan:
+  AquaSecurityScan:
     image: codefreshplugins/cfstep-aqua
     environment:
       - AQUA_HOST=http://35.193.8.17
