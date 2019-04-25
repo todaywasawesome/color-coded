@@ -1,5 +1,5 @@
 #build stage
-FROM golang:alpine AS build-env
+FROM golang:1.10.3-alpine AS build-env
 ENV GOPROXY=https://gocenter.io 
 ADD . /src
 RUN cd /src && go build -o myapp

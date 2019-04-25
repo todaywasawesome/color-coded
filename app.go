@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 	"net/http"
+	"crypto/x509" //introduce a vulnerability for Go before 1.10.6
 )
 
 func main() {
