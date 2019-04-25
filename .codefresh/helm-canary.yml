@@ -9,14 +9,6 @@ steps:
     working_directory: ./
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
     dockerfile: Dockerfile
-  AquaSecurityScan:
-    image: codefresh/cfstep-aqua
-    environment:
-      - AQUA_HOST=http://35.193.8.17
-      - AQUA_PASSWORD=${{AQUA_PASS}}
-      - AQUA_USERNAME=administrator
-      - IMAGE=todaywasawesome/colorcoded # Replace with your Docker image name
-      - TAG=${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}} # Replace with your Docker image tag
   IstioInfo:
     title: Gather istio information
     image: containers101/k8sclitoolset
