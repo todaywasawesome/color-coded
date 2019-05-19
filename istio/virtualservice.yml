@@ -3,7 +3,7 @@ kind: VirtualService
 metadata:
   creationTimestamp: null
   name: colors
-  namespace: color-coded
+  namespace: colors
 #  resourceVersion: "973245"
 spec:
   gateways:
