@@ -27,9 +27,11 @@ steps:
   #     - IMAGE=todaywasawesome/colorcoded
   #     - TAG=${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}
   IstioInfo:
-    title: Gather istio information
+    title: Gather Production State
+    stage: Deploy
     image: containers101/k8sclitoolset
     commands:
+    - kubectl config get-contexts
     - kubectl config use-context ${{KUBE_CONTEXT}}
     - istioctl get virtualservices
     - cf_export prodVersion=$(kubectl get service -l status=prod -n ${{NAMESPACE}} -o=jsonpath='{$.items[0].metadata.name}')
