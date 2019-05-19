@@ -1,10 +1,19 @@
 version: '1.0'
 stages:
+ - Build
  - Deploy
 steps:
+main_clone:
+  title: Cloning main repository...
+  type: git-clone
+  stage: Build
+  repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+  revision: '${{CF_REVISION}}'
+
   BuildingDockerImage:
     title: Building Docker Image
     type: build
+    stage: Build
     image_name: todaywasawesome/colorcoded
     working_directory: ./
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
