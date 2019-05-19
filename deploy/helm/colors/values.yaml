@@ -25,3 +25,7 @@ service:
   type: ClusterIP
   externalPort: 80
   internalPort: 8080
+
+istio:
+  host: colors.demo4591.codefresh.io
+  namespace: color

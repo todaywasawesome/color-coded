@@ -1,0 +1,28 @@
+{{- if .Values.init }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  creationTimestamp: null
+  name: colors
+  namespace: color-coded
+#  resourceVersion: "973245"
+spec:
+  gateways:
+  - colors
+  hosts:
+  - {{.Values.istio.host}}
+  http:
+  - route:
+    - destination:
+        host: {{.Release.Name}}
+        port:
+          number: 80
+      weight: 80
+    # - destination:
+    #     host: colors-master-24f0bdf
+    #     port:
+    #       number: 80
+    #   weight: 20
+---
+
+{{- end }}
