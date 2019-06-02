@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: '{{$local.Release.Name}}-{{$track.image.version}}'
+  name: '{{$local.Release.Name}}'
   labels:
     chart: "{{ $local.Chart.Name }}-{{ $local.Chart.Version | replace "+" "_" }}"
     app: {{$local.Release.Name}}
