@@ -4,9 +4,14 @@ import (
 	"os"
 	"fmt"
 	"net/http"
+	"github.com/golangci/golangci-lint/pkg/exitcodes"
 )
 
 func main() {
+
+	//Add a GPL3 package to cause havock 
+	os.Setenv("test", string(exitcodes.Success))
+
 
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
