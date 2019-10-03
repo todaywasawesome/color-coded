@@ -1,8 +1,10 @@
 #build stage
-FROM golang:1.10.3-alpine AS build-env
+FROM golang:1.13.1-alpine3.10 AS build-env
 ENV GOPROXY=https://gocenter.io 
+RUN apk update && apk upgrade && \
+    apk add --no-cache git 
 ADD . /src
-RUN cd /src && go build -o myapp
+RUN cd /src && go get -d && go build -o myapp
 
 #Add a security vulnerability
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.1/main' >> /etc/apk/repositories
