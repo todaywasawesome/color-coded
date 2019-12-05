@@ -4,24 +4,14 @@ metadata:
   labels:
     app: blue
     io.codefresh.account.name: todaywasawesome
-    io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-    io.codefresh.generated-at: "1529694169042"
-    io.codefresh.pipeline.id: 5b2d45cdefa44584b757c008
-    io.codefresh.pipeline.name: todaywasawesome-color-coded-color-coded
-    io.codefresh.process.id: 5b31d3b9467a8d000141d03f
-    io.codefresh.scm.branch: master
-    io.codefresh.scm.revision: 6aec0957538ad193718aa652e0bbd1f6e6300f9e
+    io.codefresh.scm.branch: ${{CF_BRANCH}}
+    io.codefresh.scm.revision: ${{CF_REVISION}}
   name: blue
-  resourceVersion: "2013674"
-  selfLink: /apis/extensions/v1beta1/namespaces/canary/deployments/blue
-  uid: db276b00-764e-11e8-847a-42010a800037
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: blue
-      io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-      io.codefresh.generated-at: "1529694169042"
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -29,14 +19,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      annotations:
-        forceRedeployUniqId: a24b1fcc-9aa4-4b8b-a9fd-63c2528ba051
-        forceRedeployUniqueId: "1529992153047"
-      creationTimestamp: null
       labels:
         app: blue
-        io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-        io.codefresh.generated-at: "1529694169042"
     spec:
       containers:
       - env:
