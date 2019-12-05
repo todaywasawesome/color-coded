@@ -28,7 +28,7 @@ spec:
           value: '#44B3C2'
         - name: blank
           value: blank
-        image: r.cfcr.io/todaywasawesome/todaywasawesome/colorcoded:{{CF_REVISION}}
+        image: r.cfcr.io/todaywasawesome/todaywasawesome/color-coded:{{CF_REVISION}}
         imagePullPolicy: Always
         name: blue
         ports:
@@ -39,7 +39,7 @@ spec:
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
       imagePullSecrets:
-      - name: codefresh-generated-r.cfcr.io-cfcr-myapp
+      - name: codefresh-generated-r.cfcr.io-cfcr-myapp  
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
