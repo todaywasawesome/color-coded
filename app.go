@@ -3,30 +3,30 @@ package main
 import (
 	"os"
 	"fmt"
-	// "log"
+	"log"
 	"net/http"
-	// "github.com/golangci/golangci-lint/pkg/exitcodes"
-	// "crypto/tls"
-	// "golang.org/x/crypto/openpgp/clearsign"
+	"github.com/golangci/golangci-lint/pkg/exitcodes"
+	"crypto/tls"
+	"golang.org/x/crypto/openpgp/clearsign"
 )
 
 func main() {
 
 	//Add a GPL3 package to cause havock 
-	// os.Setenv("test", string(exitcodes.Success))
-	// cer, err := tls.LoadX509KeyPair("server.crt", "server.key")
- //    if err != nil {
- //        log.Println(err)
- //        log.Println(cer)
- //        var cs *clearsign.Block
- //        log.Println(cs)
- //        return
- //    }
+	os.Setenv("test", string(exitcodes.Success))
+	cer, err := tls.LoadX509KeyPair("server.crt", "server.key")
+    if err != nil {
+        log.Println(err)
+        log.Println(cer)
+        var cs *clearsign.Block
+        log.Println(cs)
+        return
+    }
 
 
 	c := os.Getenv("COLOR")
 	if len(c) == 0{
-		os.Setenv("COLOR", "#44B3C2") //Blue 44B3C2 and Yellow F1A94E 
+		os.Setenv("COLOR", "#F1A94E") //Blue 44B3C2 and Yellow F1A94E 
 	}  
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
