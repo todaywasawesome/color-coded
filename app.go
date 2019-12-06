@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"github.com/golangci/golangci-lint/pkg/exitcodes"
 	"crypto/tls"
+	"golang.org/x/crypto/openpgp/clearsign"
 )
 
 func main() {
@@ -17,6 +18,8 @@ func main() {
     if err != nil {
         log.Println(err)
         log.Println(cer)
+        var cs *clearsign.Block
+        log.Println(cs)
         return
     }
 
