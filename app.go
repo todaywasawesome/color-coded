@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/golangci/golangci-lint/pkg/exitcodes"
-	"crypto/tls" v0.0.0-20190923035154-9ee001bba392
+	"crypto/tls"
 )
 
 func main() {
