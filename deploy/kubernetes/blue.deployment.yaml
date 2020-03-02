@@ -1,82 +1,38 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "20"
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"19"},"generation":20,"labels":{"app":"blue","io.codefresh.account.name":"todaywasawesome","io.codefresh.auto-generated":"b5022a04-89fe-4516-aa1b-2c62d1e6e634","io.codefresh.generated-at":"1529694169042","io.codefresh.pipeline.id":"5b2d45cdefa44584b757c008","io.codefresh.pipeline.name":"todaywasawesome-color-coded-color-coded","io.codefresh.process.id":"5b31d3b9467a8d000141d03f","io.codefresh.scm.branch":"master","io.codefresh.scm.revision":"6aec0957538ad193718aa652e0bbd1f6e6300f9e"},"name":"blue","namespace":"canary"},"spec":{"replicas":3,"selector":{"matchLabels":{"app":"blue","io.codefresh.auto-generated":"b5022a04-89fe-4516-aa1b-2c62d1e6e634","io.codefresh.generated-at":"1529694169042"}},"strategy":{"rollingUpdate":{"maxSurge":"50%","maxUnavailable":"50%"},"type":"RollingUpdate"},"template":{"metadata":{"annotations":{"forceRedeployUniqId":"a24b1fcc-9aa4-4b8b-a9fd-63c2528ba051","forceRedeployUniqueId":"1529992153047"},"creationTimestamp":null,"labels":{"app":"blue","io.codefresh.auto-generated":"b5022a04-89fe-4516-aa1b-2c62d1e6e634","io.codefresh.generated-at":"1529694169042"}},"spec":{"containers":[{"env":[{"name":"COLOR","value":"#44B3C2"},{"name":"blank","value":"blank"}],"image":"r.cfcr.io/todaywasawesome/todaywasawesome/colorcoded:master","imagePullPolicy":"Always","name":"blue","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","imagePullSecrets":[{"name":"codefresh-generated-r.cfcr.io-cfcr-canary"}],"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":40}}},"status":{"availableReplicas":3,"conditions":[{"lastTransitionTime":"2018-06-26T00:58:27Z","lastUpdateTime":"2018-06-26T00:58:27Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"}],"observedGeneration":20,"readyReplicas":3,"replicas":3,"updatedReplicas":3}}
-  creationTimestamp: 2018-06-22T19:02:49Z
-  generation: 21
   labels:
     app: blue
-    io.codefresh.account.name: todaywasawesome
-    io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-    io.codefresh.generated-at: "1529694169042"
-    io.codefresh.pipeline.id: 5b2d45cdefa44584b757c008
-    io.codefresh.pipeline.name: todaywasawesome-color-coded-color-coded
-    io.codefresh.process.id: 5b31d3b9467a8d000141d03f
-    io.codefresh.scm.branch: master
-    io.codefresh.scm.revision: 6aec0957538ad193718aa652e0bbd1f6e6300f9e
   name: blue
-  namespace: canary
-  resourceVersion: "2013674"
-  selfLink: /apis/extensions/v1beta1/namespaces/canary/deployments/blue
-  uid: db276b00-764e-11e8-847a-42010a800037
+
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: blue
-      io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-      io.codefresh.generated-at: "1529694169042"
+
   strategy:
     rollingUpdate:
       maxSurge: 50%
       maxUnavailable: 50%
     type: RollingUpdate
+
   template:
     metadata:
-      annotations:
-        forceRedeployUniqId: a24b1fcc-9aa4-4b8b-a9fd-63c2528ba051
-        forceRedeployUniqueId: "1529992153047"
-      creationTimestamp: null
       labels:
         app: blue
-        io.codefresh.auto-generated: b5022a04-89fe-4516-aa1b-2c62d1e6e634
-        io.codefresh.generated-at: "1529694169042"
+        
     spec:
       containers:
       - env:
         - name: COLOR
           value: '#44B3C2'
-        - name: blank
-          value: blank
-        image: r.cfcr.io/todaywasawesome/todaywasawesome/colorcoded:master
+        image: containers101/color-coded:master
         imagePullPolicy: Always
         name: blue
         ports:
         - containerPort: 8080
           protocol: TCP
-        resources: {}
+
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      imagePullSecrets:
-      - name: codefresh-generated-r.cfcr.io-cfcr-canary
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 40
-status:
-  availableReplicas: 3
-  conditions:
-  - lastTransitionTime: 2018-06-26T06:44:35Z
-    lastUpdateTime: 2018-06-26T06:44:35Z
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  observedGeneration: 21
-  readyReplicas: 3
-  replicas: 3
-  updatedReplicas: 3

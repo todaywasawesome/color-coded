@@ -1,17 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: 2018-06-22T19:02:49Z
-  labels:
-    io.codefresh.auto-generated: 3d0fd3bd-de80-4021-a5cc-7867a3ac8e95
-    io.codefresh.generated-at: "1529694169080"
   name: blue
-  namespace: canary
-  resourceVersion: "1299256"
-  selfLink: /api/v1/namespaces/canary/services/blue
-  uid: db435425-764e-11e8-847a-42010a800037
 spec:
-  clusterIP: 10.43.245.116
   ports:
   - name: http1
     port: 80
@@ -20,6 +11,4 @@ spec:
   selector:
     app: blue
   sessionAffinity: None
-  type: ClusterIP
-status:
-  loadBalancer: {}
+  type: LoadBalancer
