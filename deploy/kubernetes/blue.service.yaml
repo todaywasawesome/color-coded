@@ -11,4 +11,4 @@ spec:
   selector:
     app: blue
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort
