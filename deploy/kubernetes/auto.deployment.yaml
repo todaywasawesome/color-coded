@@ -24,7 +24,7 @@ spec:
         
     spec:
       containers:
-      - image: docker.io/rpbo/color-coded:$CF_REVISION
+      - image: docker.io/rpbo/color-coded:{{CF_REVISION}}
         imagePullPolicy: Always
         name: blue
         # env:
