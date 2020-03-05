@@ -9,7 +9,7 @@ FROM alpine
 #RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.1/main' >> /etc/apk/repositories
 #RUN apk add "openssh==6.7_p1-r6"
 #added just to get security vulnerabilities in
-RUN apk add openssh 
+# RUN apk add openssh 
 WORKDIR /app
 COPY --from=build-env /src/myapp /app/
 ENTRYPOINT ["./myapp"]
