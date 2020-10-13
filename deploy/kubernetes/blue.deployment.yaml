@@ -29,7 +29,8 @@ spec:
         name: blue
         env:
         - name: COLOR
-          value: '#44B3C2'
+          # value: '#44B3C2' # Blue
+          value: 'F1A94E' # Yellow
         ports:
         - containerPort: 8080
           protocol: TCP
