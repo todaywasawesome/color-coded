@@ -27,9 +27,9 @@ spec:
       - image: containers101/color-coded:master
         imagePullPolicy: Always
         name: blue
-        # env:
-        # - name: COLOR
-        #   value: '#44B3C2'
+        env:
+        - name: COLOR
+          value: '#44B3C2'
         ports:
         - containerPort: 8080
           protocol: TCP
