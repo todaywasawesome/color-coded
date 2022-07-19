@@ -1,5 +1,0 @@
-apiVersion: v1
-description: A simple app to help demo different Istio rollout strategies
-name: Colors
-version: 0.8.0
-icon: https://codefresh.io/wp-content/uploads/2018/06/Color-coded.svg
