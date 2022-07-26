@@ -1,14 +1,14 @@
-# Color Coded - Istio + Helm + Codefresh Demo App
+# Color Coded 
+Codefresh, Argo CD and Argo Rollouts Demo App
 
-<img src="https://codefresh.io/wp-content/uploads/2018/06/Color-coded.svg" width="200px">
+<img src="https://codefresh.io/wp-content/uploads/2018/08/Fully_automated_Canary_deployments_in_Kubernetes_with_Codefresh.jpg" width="100%">
 
 ## What's in the app?
-A simple go app that displays a color and dies when you navigate to /die. The whole thing is packaged as a Helm chart and includes a Codefresh pipeline, and Istio configuration. 
+A simple go app that displays a color and version.
 
-
-## Installation and usage
-Some effort will be requried to streamline the setup for testing but it's possible now. These instructions may be incomplete.
+## Deployment configuration
+This app is used and configured in [oss-apps](https://github.com/todaywasawesome/oss-apps)
 
 ## More about Codefresh
-Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kubernetes CI/CD</a>
+Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kubernets Continuous Delivery</a>
 
