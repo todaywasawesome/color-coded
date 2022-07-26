@@ -1,15 +1,20 @@
-#build stage
-FROM golang:1.10.3-alpine AS build-env
-ENV GOPROXY=https://gocenter.io 
-ADD . /src
-RUN cd /src && go build -o myapp
+FROM golang:1.16-alpine3.13 AS build-env
 
-# iron/go is the alpine image with only ca-certificates added
-FROM alpine
-#RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.1/main' >> /etc/apk/repositories
-#RUN apk add "openssh==6.7_p1-r6"
-#added just to get security vulnerabilities in
-# RUN apk add openssh 
+WORKDIR /tmp/workdir
+
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux go build 
+
+FROM alpine:3.13
+
+EXPOSE 8080
+
+RUN apk add --no-cache ca-certificates bash
+
+COPY --from=build-env /tmp/workdir/static /app/static
+COPY --from=build-env /tmp/workdir/canary-app /app/canary-app
+
 WORKDIR /app
-COPY --from=build-env /src/myapp /app/
-ENTRYPOINT ["./myapp"]
+
+CMD ["./canary-app"]
