@@ -1,39 +1,23 @@
 package main
- 
+
 import (
-	"os"
 	"fmt"
 	"net/http"
-	// "github.com/golangci/golangci-lint/pkg/exitcodes"
 )
 
 func main() {
 
-	//Add a GPL3 package to cause havock 
-	// os.Setenv("test", string(exitcodes.Success))
+	version := "1.0"
 
+	color := "#44B3C2" //Blue 44B3C2 and Yellow F1A94E
 
-	c := os.Getenv("COLOR")
-	if len(c) == 0{
-		// os.Setenv("COLOR", "#44B3C2") //Blue 44B3C2 and Yellow F1A94E  
-		os.Setenv("COLOR", "#F1A94E") //Blue 44B3C2 and Yellow F1A94E  
-	}  
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "<html onclick=\"window.location.href = '/die'\" style='background:" + os.Getenv("COLOR") + "'> Requested: %s\n </html>", r.URL.Path)
+	http.HandleFunc("/callme", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "<div class='pod' style='background:%s'> ver: %s\n </div>", color, version)
 	})
 
-	http.HandleFunc("/dashboard", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "<html> DASHBOARD Requested: %s\n </html>", r.URL.Path)
-	})
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
 
-	http.HandleFunc("/die", func(w http.ResponseWriter, r *http.Request) {
-		die();
-	})
-
+	fmt.Println("Listening now at port 8080")
 	http.ListenAndServe(":8080", nil)
-}
-
-func die() {
-	os.Exit(3)
 }
