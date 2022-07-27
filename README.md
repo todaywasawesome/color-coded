@@ -1,5 +1,5 @@
 # Color Coded 
-Codefresh, Argo CD and Argo Rollouts Demo App
+Codefresh, [Argo CD](https://argo-cd.readthedocs.io/en/stable/) and Argo Rollouts Demo App
 
 <img src="https://codefresh.io/wp-content/uploads/2018/08/Fully_automated_Canary_deployments_in_Kubernetes_with_Codefresh.jpg" width="100%">
 
