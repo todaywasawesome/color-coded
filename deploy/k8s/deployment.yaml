@@ -5,7 +5,7 @@ metadata:
   name: simple-rollout
 spec:
   revisionHistoryLimit: 1
-  replicas: 13
+  replicas: 2
   selector:
     matchLabels:
       app: summer-k8s-app
@@ -16,10 +16,7 @@ spec:
     spec:
       containers:
       - name: webserver-simple
-        image: docker.io/todaywasawesome/colors:master-88a8cea
+        image: docker.io/todaywasawesome/colors:blue
         imagePullPolicy: Always
-        env:
-        - name: COLOR
-          value: '#44B3C2'
         ports:
         - containerPort: 8080
