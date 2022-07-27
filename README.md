@@ -7,7 +7,7 @@ Codefresh, Argo CD and Argo Rollouts Demo App
 A simple go app that displays a color and version. This is designed to work with Argo Rollouts for canary and blue/green progressive delivery. 
 
 ## Deployment configuration
-This app is used and configured in [oss-apps](https://github.com/todaywasawesome/oss-apps)
+This app is used and configured in [oss-apps](https://github.com/todaywasawesome/oss-apps), which is a GitOps deployment repository.
 
 ## More about Codefresh
 Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kubernets Continuous Delivery</a>
