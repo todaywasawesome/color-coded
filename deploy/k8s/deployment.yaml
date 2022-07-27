@@ -16,10 +16,7 @@ spec:
     spec:
       containers:
       - name: webserver-simple
-        image: docker.io/todaywasawesome/colors:v0.0.1-alpha
+        image: docker.io/todaywasawesome/colors:blue
         imagePullPolicy: Always
-        env:
-        - name: COLOR
-          value: '#44B3C2'
         ports:
         - containerPort: 8080
