@@ -12,3 +12,5 @@ This app is used and configured in [oss-apps](https://github.com/todaywasawesome
 ## More about Codefresh
 Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kubernets Continuous Delivery</a>
 
+## Get GitOps Certified with Argo CD
+Check out https://codefresh.io/get-certified to get GitOps certified with <a href="https://codefresh.io/get-certified">Argo CD</a>
