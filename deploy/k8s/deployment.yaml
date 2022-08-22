@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webserver-simple
-        image: todaywasawesome/colors:purple
+        image: lrochette/colors:purple
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
