@@ -13,3 +13,11 @@
 -John Carmack
 
 “A phased approach to continuous delivery is not only preferable, it’s infinitely more manageable.”—Maurice Kherlakian
+
+“So, what do you do?”
+“I’m lean”
+“What?”
+“I’m agile”
+“What?”
+“Fine. I make websites.”
+—I Am Devloper
