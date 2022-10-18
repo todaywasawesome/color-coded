@@ -4,13 +4,13 @@ kind: Service
 metadata:
   name: summer-k8s-service-stable
   labels:
-    app: summer-k8s-app  
+    app: summer-k8s-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: summer-k8s-app
   ports:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8080     
+      targetPort: 8080

@@ -1,0 +1,127 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "build"
+  - "test"
+  - staging
+  - production
+
+steps:
+  clones:
+    type: parallel
+    stage: clone
+    steps:
+      clone:
+        title: "Cloning repository"
+        type: "git-clone"
+        repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+        revision: "${{CF_BRANCH}}"
+        git: "github"
+      clone-gitops:
+        title: "Cloning App Gitops Config repository"
+        type: "git-clone"
+        repo: "${{CF_REPO_OWNER}}/csdp_applications"
+        revision: "main"
+        git: "github"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "${{CF_REPO_OWNER}}/color"
+    working_directory: "${{clone}}"
+    tag: "${{CF_SHORT_REVISION}}"
+    dockerfile: "Dockerfile"
+    registry: docker-lr
+    stage: "build"
+
+  ReportImageMetadataAll:
+    title: Report image to Codefresh CD
+    type: codefresh-report-image
+    working_directory: /code
+    stage: build
+    arguments:
+      CF_API_KEY: '${{CF_API_KEY}}'
+      CF_IMAGE: 'docker.io/${{CF_REPO_OWNER}}/color:${{CF_SHORT_REVISION}}'
+      CF_CONTAINER_REGISTRY_INTEGRATION: docker-lr
+      CF_RUNTIME_NAME: codefresh-hosted
+      CF_ENRICHERS: 'jira,github'
+      CF_GITHUB_TOKEN: '${{GITHUB_TOKEN}}'
+      CF_GIT_PROVIDER: github
+      CF_GIT_REPO: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+      CF_GIT_BRANCH: '${{CF_BRANCH}}'
+      CF_JIRA_INTEGRATION: jira-intg
+      CF_JIRA_MESSAGE: "${{CF_COMMIT_MESSAGE}}"
+      CF_JIRA_PROJECT_PREFIX: FT
+
+  test:
+    title: "Running test"
+    type: "freestyle" # Run any command
+    image: "ubuntu:latest" # The image in which command will be executed
+    working_directory: "${{clone}}" # Running command where code cloned
+    commands:
+      - "ls"
+    stage: "test"
+
+  staging_approval:
+    title: Approve for Staging
+    type: pending-approval
+    stage: staging
+    timeout:
+      duration: 10
+      timeUnit: minutes
+      finalState: approved
+
+  update_staging_manifest:
+    description: update the image version for staging
+    image: mikefarah/yq:3.3.4
+    working_directory: '${{clone-gitops}}'
+    stage: staging
+    commands:
+      - yq w -i kustomize/color/overlays/dev/deployment.yaml 'spec.template.spec.containers[0].image' "lrochette/color:${{CF_SHORT_REVISION}}"
+
+  commit_and_push_staging:
+    title: Commit changes and push
+    type: git-commit
+    stage: staging
+    arguments:
+      repo: '${{CF_REPO_OWNER}}/csdp_applications'
+      git: github
+      working_directory: '/codefresh/volume/csdp_applications'
+      commit_message: "Update image to deploy to ${{CF_SHORT_REVISION}}"
+      git_user_name: lrochette
+      git_user_email: laurent.rochette@codefresh.io
+      allow_empty: false
+      add:
+        - kustomize/color/overlays/dev/deployment.yaml
+
+  production_approval:
+    title: Approve for Production
+    type: pending-approval
+    stage: production
+    timeout:
+      duration: 10
+      timeUnit: minutes
+      finalState: denied
+
+  update_prod_manifest:
+    description: update the image version for production
+    image: mikefarah/yq:3.3.4
+    working_directory: '${{clone-gitops}}'
+    stage: production
+    commands:
+      - yq w -i kustomize/color/overlays/prod/deployment.yaml 'spec.template.spec.containers[0].image' "lrochette/color:${{CF_SHORT_REVISION}}"
+
+  commit_and_push_production:
+    title: Commit changes and push
+    type: git-commit
+    stage: production
+    arguments:
+      repo: '${{CF_REPO_OWNER}}/csdp_applications'
+      git: github
+      working_directory: '/codefresh/volume/csdp_applications'
+      commit_message: "Update image to deploy in production to ${{CF_SHORT_REVISION}}"
+      git_user_name: lrochette
+      git_user_email: laurent.rochette@codefresh.io
+      allow_empty: false
+      add:
+        - kustomize/color/overlays/prod/deployment.yaml
