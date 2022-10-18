@@ -14,3 +14,5 @@ Goto https://codefresh.io to learn more about <a href="https://codefresh.io">Kub
 
 ## Get GitOps Certified with Argo CD
 Check out https://codefresh.io/get-certified to get GitOps certified with <a href="https://codefresh.io/get-certified">Argo CD</a>
+
+## End
