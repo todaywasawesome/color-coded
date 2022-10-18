@@ -2,7 +2,6 @@ version: "1.0"
 stages:
   - "clone"
   - "build"
-  - "test"
   - staging
   - production
 
@@ -57,10 +56,10 @@ steps:
     title: "Running test"
     type: "freestyle" # Run any command
     image: "ubuntu:latest" # The image in which command will be executed
-    working_directory: "${{clone}}" # Running command where code cloned
+    working_directory: "${{clone}}"
     commands:
       - "ls"
-    stage: "test"
+    stage: "build"
 
   staging_approval:
     title: Approve for Staging
@@ -109,7 +108,7 @@ steps:
     working_directory: '${{clone-gitops}}'
     stage: production
     commands:
-      - yq w -i kustomize/color/overlays/prod/deployment.yaml 'spec.template.spec.containers[0].image' "lrochette/color:${{CF_SHORT_REVISION}}"
+      - yq w -i kustomize/color/overlays/prod/rollout.yaml 'spec.template.spec.containers[0].image' "lrochette/color:${{CF_SHORT_REVISION}}"
 
   commit_and_push_production:
     title: Commit changes and push

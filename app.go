@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	version := "Purple"
-	color := "#7433FF" //Purple #7433FF //Blue 44B3C2 and Yellow F1A94E
+	version := "Blue"
+	color := "#44B3C2" //Purple #7433FF //Blue 44B3C2 and Yellow F1A94E
 
 	http.HandleFunc("/callme", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "<div class='pod' style='background:%s'> ver: %s\n </div>", color, version)
