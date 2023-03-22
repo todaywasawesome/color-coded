@@ -22,3 +22,6 @@
 
 “Programmers don’t burn out on hard work, they burn out on change-with-the-wind directives and not ‘shipping’.”
 —Mark Berry
+
+“If you think it’s expensive to hire a professional, wait until you hire an amateur.”
+-Red Adair
